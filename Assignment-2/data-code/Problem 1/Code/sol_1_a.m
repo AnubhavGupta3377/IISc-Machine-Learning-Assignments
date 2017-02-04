@@ -1,0 +1,15 @@
+traindata = importdata('../Dataset-1/train.txt');
+X_train = traindata(:,1:end-1);
+y_train = traindata(:,end);
+testdata = importdata('../Dataset-1/test.txt');
+X_test = testdata(:,1:end-1);
+y_test = testdata(:,end);
+[w,b] = LSR(X_train,y_train);
+y_pred = X_train*w + b*ones(size(X_train,1),1);
+train_error = mean_squared_error(y_pred, y_train)
+y_pred = X_test*w + b*ones(size(X_test,1),1);
+test_error = mean_squared_error(y_pred, y_test)
+plot_script(X_test, y_test, y_pred)
+
+% train_error = 5.7736
+% test_error = 5.9161
